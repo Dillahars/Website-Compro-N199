@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - PT N199 CLEAN</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & GLOBAL STYLES --- */
+        :root {
+            --primary-green: #2a9d8f;
+            --light-green: #52b788;
+            --dark-green: #1b6b62;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            --gradient-reverse: linear-gradient(135deg, var(--light-green), var(--primary-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            padding-top: 80px; /* Menghindari konten tertutup navbar */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .navbar .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .navbar .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-item {
+            margin-left: 2rem;
+        }
+
+        .navbar .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger i {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        /* --- WHATSAPP FLOATING WIDGET --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        .whatsapp-float i {
+            color: white;
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            background: var(--gradient-primary);
+        }
+        
+        #about .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        #about img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #about .text-content h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        #about .text-content p {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        /* --- PERIZINAN SECTION --- */
+        #perizinan {
+            background: var(--light-gray);
+        }
+
+        #perizinan .section-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        #perizinan .section-intro h2 {
+            color: var(--primary-green);
+        }
+
+        #perizinan .section-intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-color);
+        }
+
+        #perizinan .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        #perizinan .document-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #perizinan .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        #perizinan .document-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        #perizinan .document-content {
+            padding: 1.5rem;
+        }
+
+        #perizinan .document-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        #perizinan .document-content p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        #perizinan .document-content .document-date {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        #perizinan .document-content .document-date i {
+            margin-right: 0.5rem;
+            color: var(--primary-green);
+        }
+
+        #perizinan .document-content .view-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        #perizinan .document-content .view-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        #perizinan .document-content .view-btn i {
+            margin-left: 0.5rem;
+        }
+
+        /* Modal untuk melihat dokumen */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary-green);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--dark-green);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-links a:hover {
+            color: var(--light-green);
+        }
+
+        /* --- SCROLL ANIMATION --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media(max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            .navbar .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .navbar .nav-menu.active {
+                left: 0;
+            }
+
+            .navbar .nav-item {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            #about .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="assets/logon199-removebg-preview.png" width="100px" alt="">
+                </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="clients.html" class="nav-link">Clients</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container about-content fade-in">
+                <img src="/assets/tentangkami.png" alt="Tentang Kami">
+                <div class="text-content">
+                    <h3>Tentang PT N199 CLEAN</h3>
+                    <p>Kami adalah perusahaan yang berdedikasi untuk menyediakan solusi kebersihan komprehensif dan inovatif. Dengan pengalaman bertahun-tahun, kami memahami betapa pentingnya lingkungan yang bersih untuk kesehatan dan produktivitas.</p>
+                    <p>Misi kami adalah menjadi mitra terpercaya Anda dalam menjaga kebersihan, menggunakan produk berkualitas tinggi dan tenaga kerja yang profesional dan terlatih.</p>
+                    <p>Visi kami adalah menciptakan standar baru dalam industri kebersihan di Indonesia, dengan fokus pada keberlanjutan dan kepuasan pelanggan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perizinan Section -->
+        <section id="perizinan">
+            <div class="container">
+                <div class="section-intro fade-in">
+                    <h2>Perizinan Resmi</h2>
+                    <p>PT N199 CLEAN beroperasi secara legal dengan dilengkapi berbagai izin resmi dari pemerintah Indonesia. Dokumen-dokumen berikut adalah bukti komitmen kami terhadap kepatuhan dan standar operasional yang tinggi.</p>
+                </div>
+                
+                <div class="documents-grid">
+                    <!-- Dokumen 1 -->
+                    <div class="document-card fade-in">
+                        <img src="https://z-cdn-media.chatglm.cn/files/852c1a91-41bc-49f4-8274-fa39247f8dbb_pasted_image_1761119133124.png?auth_key=1792655406-edf742876477461c9f05387c7d557181-0-56e0cc0dd92b73164c447e8688583457" alt="Keputusan Menteri Hukum dan HAM" class="document-image">
+                        <div class="document-content">
+                            <h3>Keputusan Menteri Hukum dan HAM</h3>
+                            <p>Dokumen resmi dari Kementerian Hukum dan HAM Republik Indonesia yang menyetujui pendirian dan operasional perusahaan kami.</p>
+                            <div class="document-date">
+                                <i class="far fa-calendar"></i>
+                                <span>13 Juni 2022</span>
+                            </div>
+                            <a href="#" class="view-btn" data-src="https://z-cdn-media.chatglm.cn/files/852c1a91-41bc-49f4-8274-fa39247f8dbb_pasted_image_1761119133124.png?auth_key=1792655406-edf742876477461c9f05387c7d557181-0-56e0cc0dd92b73164c447e8688583457">
+                                Lihat Dokumen <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen 2 -->
+                    <div class="document-card fade-in">
+                        <img src="https://z-cdn-media.chatglm.cn/files/7ae19f12-28c4-4f53-9df0-9ce2fc688356_pasted_image_1761119258646.png?auth_key=1792655406-c7288e17ef3f40a9abb8cd474237b6af-0-1b6590fe09e3ce886b438ac974fc06f3" alt="Izin Usaha Produk Kesehatan Rumah Tangga" class="document-image">
+                        <div class="document-content">
+                            <h3>Izin Usaha Produk Kesehatan Rumah Tangga</h3>
+                            <p>Surat izin resmi dari pemerintah Indonesia untuk PT NATURAL SATU SEMBILANSEMBILAN dalam menyediakan produk kesehatan rumah tangga.</p>
+                            <div class="document-date">
+                                <i class="far fa-calendar"></i>
+                                <span>5 Mei 2024</span>
+                            </div>
+                            <a href="#" class="view-btn" data-src="https://z-cdn-media.chatglm.cn/files/7ae19f12-28c4-4f53-9df0-9ce2fc688356_pasted_image_1761119258646.png?auth_key=1792655406-c7288e17ef3f40a9abb8cd474237b6af-0-1b6590fe09e3ce886b438ac974fc06f3">
+                                Lihat Dokumen <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen 3 -->
+                    <div class="document-card fade-in">
+                        <img src="https://z-cdn-media.chatglm.cn/files/75807174-6816-4816-bf44-7a21b0a5e73a_pasted_image_1761119287721.png?auth_key=1792655406-5623922411ac416da53e9235e97baef9-0-00ec0023a2bbb85f206e2bb8b1fed6e8" alt="Izin Edar Produk Kesehatan" class="document-image">
+                        <div class="document-content">
+                            <h3>Izin Edar Produk Kesehatan</h3>
+                            <p>Izin edar resmi dari Kementerian Kesehatan RI untuk produk-produk kesehatan kami dengan nomor PY/2021/420034.</p>
+                            <div class="document-date">
+                                <i class="far fa-calendar"></i>
+                                <span>2021</span>
+                            </div>
+                            <a href="#" class="view-btn" data-src="https://z-cdn-media.chatglm.cn/files/75807174-6816-4816-bf44-7a21b0a5e73a_pasted_image_1761119287721.png?auth_key=1792655406-5623922411ac416da53e9235e97baef9-0-00ec0023a2bbb85f206e2bb8b1fed6e8">
+                                Lihat Dokumen <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dokumen 4 -->
+                    <div class="document-card fade-in">
+                        <img src="https://z-cdn-media.chatglm.cn/files/375ce59d-92af-4696-bc7a-475d704c6b89_pasted_image_1761119296211.png?auth_key=1792655406-fa8af99632084e8fac829f2ecb82d324-0-eb2d4813ff872b6e34af9984ac4ede47" alt="Izin Usaha Rumah Tangga" class="document-image">
+                        <div class="document-content">
+                            <h3>Izin Usaha Rumah Tangga</h3>
+                            <p>Perizinan resmi untuk mendukung kegiatan usaha rumah tangga (PRTK) dalam negeri, mencakup produk N19S CLEAN dan lainnya.</p>
+                            <div class="document-date">
+                                <i class="far fa-calendar"></i>
+                                <span>2024</span>
+                            </div>
+                            <a href="#" class="view-btn" data-src="https://z-cdn-media.chatglm.cn/files/375ce59d-92af-4696-bc7a-475d704c6b89_pasted_image_1761119296211.png?auth_key=1792655406-fa8af99632084e8fac829f2ecb82d324-0-eb2d4813ff872b6e34af9984ac4ede47">
+                                Lihat Dokumen <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal untuk melihat dokumen -->
+    <div id="documentModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Dokumen Perizinan">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2024 PT N199 CLEAN. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOBILE NAVIGATION TOGGLE ---
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        }));
+
+        // --- NAVBAR BACKGROUND ON SCROLL ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- SCROLL ANIMATION (FADE-IN) ---
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // --- MODAL FUNCTIONALITY ---
+        const modal = document.getElementById('documentModal');
+        const modalImg = document.getElementById('modalImage');
+        const viewBtns = document.querySelectorAll('.view-btn');
+        const closeBtn = document.querySelector('.close');
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const imgSrc = btn.getAttribute('data-src');
+                modalImg.src = imgSrc;
+                modal.style.display = 'block';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+    
+    <!-- WhatsApp Floating Widget -->
+    <a href="https://wa.me/6289603540379?text=Halo%20PT%20N199%20CLEAN%2C%20saya%20tertarik%20dengan%20layanan/produk%20Anda." style="text-decoration: none;" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

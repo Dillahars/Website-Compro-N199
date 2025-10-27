@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - PT N199 CLEAN</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & GLOBAL STYLES --- */
+        :root {
+            --primary-green: #2a9d8f;
+            --light-green: #52b788;
+            --dark-green: #1b6b62;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --text-color: #333;
+            --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            --gradient-reverse: linear-gradient(135deg, var(--light-green), var(--primary-green));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--gradient-primary);
+            padding-top: 80px; /* Menghindari konten tertutup navbar */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .background-gradient {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #666;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .navbar .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .navbar .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar .nav-item {
+            margin-left: 2rem;
+        }
+
+        .navbar .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger i {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        /* --- WHATSAPP FLOATING WIDGET --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+
+        .whatsapp-float i {
+            color: white;
+        }           
+
+        /* --- PRODUCTS SECTION (GRID) --- */
+        #products {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: var(--dark-green);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--light-green);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--dark-green);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-links a:hover {
+            color: var(--light-green);
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto; 
+            padding: 2rem;
+            border: none;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            animation: slideIn 0.4s;
+            position: relative;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain; /* Changed to contain to avoid image distortion */
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-content h2 {
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: var(--text-color);
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- SCROLL ANIMATION --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media(max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            .navbar .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .navbar .nav-menu.active {
+                left: 0;
+            }
+
+            .navbar .nav-item {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="./assets/logon199-removebg-preview.png" width="100px" alt="">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="clients.html" class="nav-link">Clients</a></li>
+                <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul> 
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Products Section -->
+        <section id="products">
+            <div class="container ">
+                <h2 class="fade-in" style="color: white;">Produk Unggulan Kami</h2>
+                <p class="section-subtitle fade-in" style="text-align: justify; color: white;">Kami memproduksi rangkaian lengkap chemical laundry inovatif untuk berbagai kebutuhan, dari skala rumahan hingga industri besar. Produk kami dirancang untuk memberikan hasil cucian maksimal, menghilangkan noda membandel, menjaga warna dan serat kain, serta aman bagi lingkungan.
+                                                    Dengan formulasi khusus dan kualitas tinggi, chemical laundry kami menawarkan efisiensi waktu, efektivitas biaya, dan kepuasan pelanggan terbaik. Setiap produk—seperti deterjen, pemutih, penetralisir, softener, dan pengemulsi—diformulasikan untuk menangani berbagai jenis noda dan tingkat pencucian, baik ringan maupun berat.</p>
+                <div class="grid">
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Sabun Cuci Piring 100ML - Jeruk Nipis.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 100ml - Jeruk Nipis</h3>
+                        <p>Sabun cuci piring dengan ekstrak jeruk nipis alami yang efektif menghilangkan lemak dan noda pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap - Jeruk Nipis" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung ekstrak jeruk nipis alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar jeruk nipis.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Sabun Cuci Piring 450ML - Jeruk Nipis.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 450ML - Jeruk Nipis</h3>
+                        <p>Sabun cuci piring dengan ekstrak jeruk nipis alami yang efektif menghilangkan lemak dan noda pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap - Jeruk Nipis" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung ekstrak jeruk nipis alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar jeruk nipis.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Sabun Cuci Piring 750 ML.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 750ML</h3>
+                        <p>Sabun cuci piring yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung bahan aktif alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar dan alami.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Sabun Cuci Piring 1000ML - Jeruk Nipis.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 1000ML - Jeruk Nipis</h3>
+                        <p>Sabun cuci piring dengan ekstrak jeruk nipis alami yang efektif menghilangkan lemak dan noda pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap - Jeruk Nipis" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung ekstrak jeruk nipis alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar jeruk nipis.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Sabun Cuci Piring 5000ML - Jeruk Nipis.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 5000ml - Jeruk Nipis </h3>
+                        <p>Sabun cuci piring dengan ekstrak jeruk nipis alami yang efektif menghilangkan lemak dan noda pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap - Jeruk Nipis" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung ekstrak jeruk nipis alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar jeruk nipis.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cuci Piring 100ML.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 100ML</h3>
+                        <p>Sabun cuci piring yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung bahan aktif alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar dan alami.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cuci Piring 1L.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 1L</h3>
+                        <p>Sabun cuci piring yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung bahan aktif alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar dan alami.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cuci Piring 5L.jpg" alt="Sabun Cuci Piring">
+                        <h3>Sabun Cuci Piring 5L</h3>
+                        <p>Sabun cuci piring yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap" data-description="N199 Dish Soap adalah sabun cuci piring berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mengandung bahan aktif alami yang memberikan kesegaran dan membantu menetralisir bau. Lembut di tangan dan aman untuk semua jenis peralatan dapur, memberikan hasil cuci bersih tanpa residu. Cocok untuk mencuci piring, gelas, dan peralatan masak sehari-hari dengan aroma segar dan alami.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Deterjen 100 ML.jpg" alt="Deterjen Laundry">
+                        <h3>Deterjen 100ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent 100ML" data-description="N199 Laundry Detergent 100ML adalah deterjen cair berkonsentrat dengan formula bio-enzim yang efektif mengangkat noda membandel seperti minyak, saus, dan kotoran sehari-hari. Menjaga warna pakaian tetap cerah, melembutkan serat kain, dan meninggalkan aroma segar yang tahan lama. Ramah lingkungan, mudah larut dalam air, cocok untuk pencucian mesin atau tangan. Ekonomis untuk penggunaan sehari-hari dengan hasil maksimal dalam dosis kecil.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Deterjen 1000 ML-anti noda.jpg" alt="Deterjen Laundry">
+                        <h3>Deterjen 1000ML - Anti Noda</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent Anti Noda 1000ML" data-description="N199 Laundry Detergent Anti Noda 1000ML adalah deterjen cair khusus anti-noda dengan formula bio-enzim canggih yang efektif mengangkat noda membandel seperti minyak, saus, dan kotoran keras. Menjaga warna pakaian tetap cerah, melembutkan serat kain, dan meninggalkan aroma segar tahan lama. Ramah lingkungan, mudah larut dalam air, cocok untuk pencucian mesin atau tangan. Ideal untuk pakaian dengan noda berat.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Deterjen 1000 ML.jpg" alt="Deterjen Laundry">
+                        <h3>Deterjen 1000ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent 1000ML" data-description="N199 Laundry Detergent 1000ML adalah deterjen cair berkonsentrat dengan formula bio-enzim yang efektif mengangkat noda sehari-hari. Melembutkan serat kain, menjaga warna pakaian cerah, dan memberikan aroma wangi segar yang tahan hingga 7 hari. Ramah lingkungan dan mudah digunakan untuk pencucian mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Deterjen 5000 ML.jpg" alt="Deterjen Laundry">
+                        <h3>Deterjen 5000ml</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent 5000ML" data-description="N199 Laundry Detergent 5000ML adalah deterjen cair dalam kemasan besar dengan formula bio-enzim yang kuat untuk mengangkat noda sulit. Melembutkan kain, menjaga warna, dan meninggalkan aroma segar tahan lama. Ekonomis untuk penggunaan industri atau rumah tangga besar, ramah lingkungan dan mudah larut dalam air.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Hand Soap 500ML.jpg" alt="Hand Soap">
+                        <h3>Hand Soap 500ML</h3>
+                        <p>Sabun cuci tangan cair dengan formula lembut yang membersihkan tangan dari kotoran dan bakteri.</p>
+                        <button class="btn detail-btn" data-title="N199 Hand Soap 500ML" data-description="N199 Hand Soap 500ML adalah sabun cuci tangan cair dengan formula lembut yang membersihkan tangan dari kotoran dan bakteri. Mengandung bahan aktif alami yang melembapkan kulit, memberikan aroma segar, dan aman untuk penggunaan sehari-hari. Cocok untuk rumah, kantor, atau tempat umum.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Hand Soap 5000ML - Akasia Fresh.jpg" alt="Hand Soap Akasia Fresh">
+                        <h3>Hand Soap 5000ML - Akasia Fresh</h3>
+                        <p>Sabun cuci tangan cair dengan aroma akasia segar yang menyegarkan dan melembapkan kulit.</p>
+                        <button class="btn detail-btn" data-title="N199 Hand Soap Akasia Fresh 5000ML" data-description="N199 Hand Soap Akasia Fresh 5000ML adalah sabun cuci tangan cair dalam kemasan besar dengan aroma akasia segar yang menyegarkan. Formula lembut membersihkan tangan dari kotoran dan bakteri, melembapkan kulit, dan memberikan sensasi kesegaran yang tahan lama. Ideal untuk penggunaan di restoran, hotel, atau rumah tangga besar.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Kaca 750 ml.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Kaca 750ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Kaca 5000 ml.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Kaca 5000ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih 5000 ML.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih 5000ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 800 ML-Sereh.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Lantai 800ML - Sereh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 1000 ML-Sereh.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Lantai 1000ML - Sereh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 1000 ML-Cemara.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Lantai 1000ML - Cemara</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 5000 ML-Apel.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Lantai 5000ML - Apel</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 5000 ML-mawar.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Lantai 5000ML - Mawar</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Porselen 800 ML.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Porselen 800ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Porselen 5000ML.jpg" alt="Deterjen Laundry">
+                        <h3>Pembersih Porselen 5000ML</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pewangi Pelicin 1000ML - Green Fresh.jpg" alt="Deterjen Laundry">
+                        <h3>Pewangi Pelicin 1000ML - Green Fresh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pewangi Pelicin 1000ML - Sakura Fresh.jpg" alt="Deterjen Laundry">
+                        <h3>Pewangi Pelicin 1000ML - Sakura Fresh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pewangi Pelicin 5000ML - Akasia Fresh.jpg" alt="Deterjen Laundry">
+                        <h3>Pewangi Pelicin 5000ML - Akasia Fresh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pewangi Pelicin 5000ML - Green Fresh.jpg" alt="Deterjen Laundry">
+                        <h3>Pewangi Pelicin 5000ML - Green Fresh</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Softener 100 ML-mystique.jpg" alt="Deterjen Laundry">
+                        <h3>Softener 100ML - Mystique</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Softener 1000 ML-Blu Akasia.jpg" alt="Deterjen Laundry">
+                        <h3>Softener 1000ML - Blue Akasia</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Softener 1000 ML-Mystique.jpg" alt="Deterjen Laundry">
+                        <h3>Softener 1000ML - Mystique</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Softener 5000 ML-mystique.jpg" alt="Softener Mystique">
+                        <h3>Softener 5000ML - Mystique</h3>
+                        <p>Pelembut dan pewangi pakaian dengan aroma mewah yang tahan lama, membuat pakaian lebih lembut dan wangi.</p>
+                        <button class="btn detail-btn" data-title="N199 Softener Mystique" data-description="Pelembut pakaian premium dengan aroma mewah yang tahan lama. Membuat pakaian lebih lembut, mudah disetrika, dan meninggalkan keharuman yang mewah hingga 7 hari. Aman untuk semua jenis kain dan ramah lingkungan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Softener 1000 ML-Blu Akasia.jpg" alt="Deterjen Laundry">
+                        <h3>Softener 1000ML - Blue Akasia</h3>
+                        <p>Deterjen cair berkonsentrat dengan teknologi anti-noda, menjaga warna dan kelembutan pakaian Anda.</p>
+                        <button class="btn detail-btn" data-title="N199 Laundry Detergent" data-description="N199 Laundry Detergent adalah deterjen cair dengan formula bio-enzim yang mampu mengangkat noda yang paling sulit sekalipun. Melembutkan serat kain, menjaga warna pakaian tetap cerah, dan meninggalkan aroma wangi yang segar tahan hingga 7 hari. Ramah lingkungan dan mudah larut dalam air, baik untuk pencucian dengan mesin atau tangan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Hand Soap 1000ML.jpg" alt="Hand Soap 1000ML">
+                        <h3>Hand Soap 1000ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Hand Soap 1000ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199 Pembersih Lantai 5000 ML-Cemara.jpg" alt="Pembersih Lantai 5000 ML-Cemara">
+                        <h3>Pembersih Lantai 5000 ML-Cemara</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pembersih Lantai 5000 ML-Cemara" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Deterjen cair 1L.jpg" alt="Deterjen Cair 1L">
+                        <h3>Deterjen Cair 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Deterjen Cair 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Deterjen Cair 5L.jpg" alt="Deterjen Cair 5L">
+                        <h3>Deterjen Cair 5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Deterjen Cair 5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Deterjen Sereh (5L).jpg" alt="Deterjen Sereh (5L)">
+                        <h3>Deterjen Sereh (5L)</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Deterjen Sereh (5L)" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Hand Soap.jpg" alt="Hand Soap">
+                        <h3>Hand Soap</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Hand Soap" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Handsoap 1L.jpg" alt="Handsoap 1L">
+                        <h3>Handsoap 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Handsoap 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Handsoap 500ML.jpg" alt="Handsoap 500ML">
+                        <h3>Handsoap 500ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Handsoap 500ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Handsoap5L.jpg" alt="Handsoap5L">
+                        <h3>Handsoap5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Handsoap5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Karbol Lantai Cemara (5L).jpg" alt="Karbol Lantai Cemara (5L)">
+                        <h3>Karbol Lantai Cemara (5L)</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Karbol Lantai Cemara (5L)" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Karbol Lantai Sereh (5L).jpg" alt="Karbol Lantai Sereh (5L)">
+                        <h3>Karbol Lantai Sereh (5L)</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Karbol Lantai Sereh (5L)" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Pewangi Pakaian Arkasia 1L.jpg" alt="Pewangi Pakaian Arkasia 1L">
+                        <h3>Pewangi Pakaian Arkasia 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewangi Pakaian Arkasia 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Pewangi Pakaian Green 1L.jpg" alt="Pewangi Pakaian Green 1L">
+                        <h3>Pewangi Pakaian Green 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewangi Pakaian Green 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Pewangi Pakaian Sakura 5L.jpg" alt="Pewangi Pakaian Sakura 5L">
+                        <h3>Pewangi Pakaian Sakura 5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewangi Pakaian Sakura 5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Pewangi pakain Green 5L.jpg" alt="Pewangi Pakain Green 5L">
+                        <h3>Pewangi Pakain Green 5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewangi Pakain Green 5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Pewani Pakaian Arkasia 5L.jpg" alt="Pewani Pakaian Arkasia 5L">
+                        <h3>Pewani Pakaian Arkasia 5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewani Pakaian Arkasia 5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun  Deterjen2 100ML.jpg" alt="Sabun Deterjen2 100ML">
+                        <h3>Sabun Deterjen2 100ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sabun Deterjen2 100ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cair cuci Piring 750ML.jpg" alt="Sabun Cair Cuci Piring 750ML">
+                        <h3>Sabun Cair Cuci Piring 750ML</h3>
+                        <p>Sabun cuci piring cair yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur.</p>
+                        <button class="btn detail-btn" data-title="N199 Dish Soap Cair" data-description="N199 Dish Soap Cair adalah sabun cuci piring cair berkualitas tinggi dengan formula khusus yang efektif menghilangkan lemak dan noda membandel pada peralatan dapur. Mudah digunakan dan cepat larut dalam air, memberikan hasil cuci bersih tanpa residu. Aman untuk tangan dan semua jenis peralatan dapur, dengan aroma segar yang tahan lama. Ideal untuk penggunaan sehari-hari di rumah atau restoran.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cair Karbol cemara 5 L.jpg" alt="Sabun Cair Karbol Cemara 5 L">
+                        <h3>Sabun Cair Karbol Cemara 5 L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sabun Cair Karbol Cemara 5 L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Cair Karbol Sereh 5 L.jpg" alt="Sabun Cair Karbol Sereh 5 L">
+                        <h3>Sabun Cair Karbol Sereh 5 L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sabun Cair Karbol Sereh 5 L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sabun Deterjen 100ML.jpg" alt="Sabun Deterjen 100ML">
+                        <h3>Sabun Deterjen 100ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sabun Deterjen 100ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Sagar Oud.jpg" alt="Sagar Oud">
+                        <h3>Sagar Oud</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sagar Oud" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Softener Cair 1L.jpg" alt="Softener Cair 1L">
+                        <h3>Softener Cair 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Softener Cair 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Softener Cair 5L.jpg" alt="Softener Cair 5L">
+                        <h3>Softener Cair 5L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Softener Cair 5L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N199-Softener Cair 100ML.jpg" alt="Softener Cair 100ML">
+                        <h3>Softener Cair 100ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Softener Cair 100ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N299-Pewangi Pakaian sakura 1L.jpg" alt="Pewangi Pakaian Sakura 1L">
+                        <h3>Pewangi Pakaian Sakura 1L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pewangi Pakaian Sakura 1L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599 Body Wash Out Wood 2.jpg" alt="Body Wash Out Wood 2">
+                        <h3>Body Wash Out Wood 2</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Body Wash Out Wood 2" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599 Body Wash Out Wood.jpg" alt="Body Wash Out Wood">
+                        <h3>Body Wash Out Wood</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Body Wash Out Wood" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599 Bodywash.png" alt="Bodywash">
+                        <h3>Bodywash</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Berry Oud .jpg" alt="Berry Oud">
+                        <h3>Berry Oud</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Berry Oud" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Berry oud.jpg" alt="Berry Oud">
+                        <h3>Berry Oud</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Berry Oud" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Black Opium.jpg" alt="Black Opium">
+                        <h3>Black Opium</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Black Opium" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Bodywash 500L.jpg" alt="Bodywash 500L">
+                        <h3>Bodywash 500L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash 500L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Bodywash Berry Out.jpg" alt="Bodywash Berry Out">
+                        <h3>Bodywash Berry Out</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash Berry Out" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Bodywash Black Opium 500ML.jpg" alt="Bodywash Black Opium 500ML">
+                        <h3>Bodywash Black Opium 500ML</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash Black Opium 500ML" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Bodywash Outwood.jpg" alt="Bodywash Outwood">
+                        <h3>Bodywash Outwood</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash Outwood" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Bodywash outwood1 500L.jpg" alt="Bodywash Outwood1 500L">
+                        <h3>Bodywash Outwood1 500L</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Bodywash Outwood1 500L" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Oud Wood.jpg" alt="Oud Wood">
+                        <h3>Oud Wood</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Oud Wood" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/N599-Sagar Oud.jpg" alt="Sagar Oud">
+                        <h3>Sagar Oud</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Sagar Oud" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                    <div class="card fade-in">
+                        <img src="/assets/Pencuci Fornotur.jpg" alt="Pencuci Fornotur">
+                        <h3>Pencuci Fornotur</h3>
+                        <p>Produk pembersih berkualitas tinggi dari PT N199 CLEAN.</p>
+                        <button class="btn detail-btn" data-title="Pencuci Fornotur" data-description="Produk ini adalah bagian dari rangkaian chemical laundry inovatif dari PT N199 CLEAN, dirancang untuk memberikan hasil maksimal dalam pembersihan.">Lihat Detail</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2024 PT N199 CLEAN. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-image" src="" alt="">
+            <p id="modal-description"></p>
+            <!-- Tombol Beli Sekarang via WhatsApp -->
+            <a href="#" id="whatsapp-buy-btn" class="btn" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Beli Sekarang
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // --- MOBILE NAVIGATION TOGGLE ---
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        }));
+
+        // --- NAVBAR BACKGROUND ON SCROLL ---
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- SCROLL ANIMATION (FADE-IN) ---
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // --- PRODUCT MODAL ---
+        const modal = document.getElementById('productModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImage = document.getElementById('modal-image');
+        const modalDescription = document.getElementById('modal-description');
+        const modalCloseBtn = document.querySelector('.close');
+        const detailBtns = document.querySelectorAll('.detail-btn');
+        const whatsappBuyBtn = document.getElementById('whatsapp-buy-btn');
+
+        detailBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const title = btn.getAttribute('data-title');
+                const description = btn.getAttribute('data-description');
+                const imgSrc = btn.parentElement.querySelector('img').src;
+
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalImage.src = imgSrc;
+                modalImage.alt = title;
+
+                // Set up WhatsApp button
+                const phoneNumber = '6281381260503'; // Nomor WhatsApp yang baru
+                const message = `Aku Mau Beli "${title}" dong kak...`;
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                whatsappBuyBtn.setAttribute('href', whatsappUrl);
+
+                modal.style.display = 'block';
+            });
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+        <!-- WhatsApp Floating Widget -->
+    <a href="https://wa.me/6289603540379?text=Halo%20PT%20N199%20CLEAN%2C%20saya%20tertarik%20dengan%20layanan/produk%20Anda." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
