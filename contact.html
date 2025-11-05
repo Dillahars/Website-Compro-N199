@@ -293,6 +293,26 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
+        /* --- MAP SECTION (TAMBAHAN) --- */
+        .map-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .map-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+        }
+
         /* --- FOOTER --- */
         .footer {
             background: var(--dark-green);
@@ -401,6 +421,9 @@
             #contact .contact-wrapper {
                 grid-template-columns: 1fr;
             }
+            .map-container iframe {
+                height: 300px; /* Sesuaikan tinggi peta untuk mobile */
+            }
         }
     </style>
 </head>
@@ -481,6 +504,15 @@
                         <button type="submit" class="btn">Kirim via WhatsApp</button>
                     </form>
                 </div>
+
+                <!-- ==================== MAP SECTION (TAMBAHAN) ==================== -->
+                <div class="map-section fade-in">
+                    <h3>Lokasi Kami</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3334.1766514883716!2d106.94400956983387!3d-6.390569634910692!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6995006f85b9e1%3A0xaf1473c47eb30758!2sN199%20CLEAN%201!5e0!3m2!1sid!2sid!4v1762315607210!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
